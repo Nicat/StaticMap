@@ -1,0 +1,46 @@
+{
+    "name": "Nicat/StaticMap",
+    "type": "library",
+    "description": "Generate a Yandex,Google,MapBox,Bing,CartoDB,HERE,MapQuest static map with Static Map Maker",
+    "keywords": [
+        "Nicat",
+        "StaticMap"
+    ],
+    "homepage": "https://github.com/Nicat/StaticMap",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": ":Nijat Asadov",
+            "email": ":nijatasadov@gmail.com",
+            "homepage": ":nijatasadov.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.1",
+        "php" : "~5.5|~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*",
+        "scrutinizer/ocular": "~1.1",
+        "squizlabs/php_codesniffer": "~2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nicat\\StaticMap\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nicat\\StaticMap\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
