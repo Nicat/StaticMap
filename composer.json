@@ -1,5 +1,5 @@
 {
-    "name": "Nicat/StaticMap",
+    "name": "nicat/static-map",
     "type": "library",
     "description": "Generate a Yandex,Google,MapBox,Bing,CartoDB,HERE,MapQuest static map with Static Map Maker",
     "keywords": [
