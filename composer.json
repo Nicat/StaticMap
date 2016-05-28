@@ -4,7 +4,16 @@
     "description": "Generate a Yandex,Google,MapBox,Bing,CartoDB,HERE,MapQuest static map with Static Map Maker",
     "keywords": [
         "Nicat",
-        "StaticMap"
+        "StaticMap",
+        "Yandex",
+        "Google",
+        "MapBox",
+        "Bing",
+        "CartoDB",
+        "HERE",
+        "MapQuest",
+        "laravel"
+
     ],
     "homepage": "https://github.com/Nicat/StaticMap",
     "license": "MIT",

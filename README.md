@@ -6,13 +6,13 @@ PSRs you support to avoid any confusion with users and contributors.
 Via Composer
 
 ``` bash
-$ composer require :vendor/:package_name
+$ composer require Nicat/StaticMap
 ```
 
 ## Usage
 
 ``` php
-$skeleton = new League\Skeleton();
+$skeleton = new Nicat\StaticMap();
 echo $skeleton->echoPhrase('Hello, League!');
 ```
 
