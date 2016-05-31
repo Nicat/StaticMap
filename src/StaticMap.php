@@ -73,8 +73,7 @@ class StaticMap {
                 $markers = '&markers=' . $center;
             }
         }
-        //$markers = "markers=size:mid color:0xff0000 label:1 Westminster+London&markers=size:mid color:0xff0000 label:2 Southwark+London";
-
+        
         $url = 'http://maps.googleapis.com/maps/api/staticmap?center=' . $center . $zoom . $size . $mapType . $imageFormat . $markers;
 
         return $url;
