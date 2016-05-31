@@ -6,9 +6,6 @@ class StaticMap {
 
     protected $config;
 
-    /**
-     * Create a new Skeleton Instance
-     */
     public function __construct()
     {
         $this->config = config('static-map');
@@ -38,8 +35,47 @@ class StaticMap {
         $size = '&size=' . $this->config['width'] . 'x' . $this->config['height'];
         $mapType = '&maptype=' . $this->config['mapType'];
         $imageFormat = '&format=' . $this->config['imageFormat'];
+        $markers = null;
+        if (isset($this->config['markers']))
+        {
+            if (is_array($this->config['markers']))
+            {
+                $hiddenMarkers = [];
+                foreach ($this->config['markers'] as $marker)
+                {
+                    $notArray = false;
+                    if ( ! is_array($marker))
+                    {
+                        $marker = $this->config['markers'];
+                        $notArray = true;
+                    }
 
-        $url = 'http://maps.googleapis.com/maps/api/staticmap?center=' . $center . $zoom . $size . $mapType . $imageFormat;
+                    if ( ! isset($marker['center']))
+                    {
+                        throw new \Exception('Center of Market not defined');
+                    }
+
+                    $centerOfMarker = $marker['center'];
+                    unset($marker['center']);
+                    $hiddenMarkers[] = "&markers=" . $this->attributes($marker, '', [':', '%7C']) . $centerOfMarker;
+
+                    if ($notArray)
+                    {
+                        break;
+                    }
+
+                }
+
+                $markers = implode('', $hiddenMarkers);
+
+            } else
+            {
+                $markers = '&markers=' . $center;
+            }
+        }
+        //$markers = "markers=size:mid color:0xff0000 label:1 Westminster+London&markers=size:mid color:0xff0000 label:2 Southwark+London";
+
+        $url = 'http://maps.googleapis.com/maps/api/staticmap?center=' . $center . $zoom . $size . $mapType . $imageFormat . $markers;
 
         return $url;
     }
@@ -61,38 +97,15 @@ class StaticMap {
     }
 
     /**
-     * Build an HTML attribute string from an array.
-     *
-     * @param array $attributes
-     *
-     * @return string
-     */
-    public function attributes($attributes)
-    {
-        $html = [];
-
-        foreach ((array)$attributes as $key => $value)
-        {
-            $element = $this->attributeElement($key, $value);
-
-            if ( ! is_null($element))
-            {
-                $html[] = $element;
-            }
-        }
-
-        return count($html) > 0 ? ' ' . implode(' ', $html) : '';
-    }
-
-    /**
      * Build a single attribute element.
      *
      * @param string $key
      * @param string $value
+     * @param array  $merger
      *
      * @return string
      */
-    protected function attributeElement($key, $value)
+    protected function attributeElement($key, $value, $merger)
     {
         if (is_numeric($key))
         {
@@ -101,7 +114,33 @@ class StaticMap {
 
         if ( ! is_null($value))
         {
-            return $key . '="' . e($value) . '"';
+            return $key . $merger[0] . e($value) . $merger[1];
         }
+    }
+
+    /**
+     * Build an HTML attribute string from an array.
+     *
+     * @param array  $attributes
+     * @param string $merger
+     * @param array  $childMerger
+     *
+     * @return string
+     */
+    public function attributes($attributes, $merger = ' ', $childMerger = ['="', '"'])
+    {
+        $all = [];
+
+        foreach ((array)$attributes as $key => $value)
+        {
+            $element = $this->attributeElement($key, $value, $childMerger);
+
+            if ( ! is_null($element))
+            {
+                $all[] = $element;
+            }
+        }
+
+        return count($all) > 0 ? $merger . implode($merger, $all) : '';
     }
 }
