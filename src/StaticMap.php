@@ -17,7 +17,7 @@ class StaticMap {
     }
 
     /**
-     * Friendly welcome
+     * Google
      *
      * @param string $center  Center location
      * @param array  $options Overwrite config
@@ -73,7 +73,7 @@ class StaticMap {
                 $markers = '&markers=' . $center;
             }
         }
-        
+
         $url = 'http://maps.googleapis.com/maps/api/staticmap?center=' . $center . $zoom . $size . $mapType . $imageFormat . $markers;
 
         return $url;
