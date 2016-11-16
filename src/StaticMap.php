@@ -80,6 +80,20 @@ class StaticMap {
     }
 
     /**
+     * Generate Static Google map Link
+     *
+     * @param       $center
+     * @param array $options    Options of Static Map
+     * @param array $imgOptions Attributes of Img tag
+     *
+     * @return string
+     */
+    public function GoogleWithLink($center, $options = null, $imgOptions = null)
+    {
+        return '<a class="google-static-map" target="_blank" href="https://www.google.com/maps/place/' . $center . '">' . $this->GoogleWithImg($center, $options, $imgOptions) . '</a>';
+    }
+
+    /**
      * Generate Static Google map With Img tag
      *
      * @param       $center
