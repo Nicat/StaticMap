@@ -66,6 +66,11 @@ If you want just add marker of main center
 {!! StaticMap::GoogleWithImg('37.6213129,-122.3811441', ['markers' => true]) !!}
 ```
 
+If you want just use with map link
+
+```php
+{!! StaticMap::GoogleWithLink('37.6213129,-122.3811441', ['markers' => true]) !!}
+```
 
 Marker options
 ```php
