@@ -31,6 +31,7 @@ class StaticMap {
             $this->overrideConfig($options);
         }
         /* Parameters of static map url */
+        $key = '&key=' . $this->config['key'];
         $zoom = '&zoom=' . $this->config['zoom'];
         $size = '&size=' . $this->config['width'] . 'x' . $this->config['height'];
         $mapType = '&maptype=' . $this->config['mapType'];
@@ -74,7 +75,8 @@ class StaticMap {
             }
         }
 
-        $url = 'http://maps.googleapis.com/maps/api/staticmap?key=' . $this->config['key'] . '&center=' . $center . $zoom . $size . $mapType . $imageFormat . $markers;
+
+        $url = 'http://maps.googleapis.com/maps/api/staticmap?center=' . $center . $zoom . $size . $mapType . $imageFormat . $markers . $key;
 
         return $url;
     }
