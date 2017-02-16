@@ -1,6 +1,6 @@
 <?php
 return [
-    'key'         => null,
+    'key'         => env('GOOGLE_MAP', null),
     'width'       => 600,
     'height'      => 400,
     'mapType'     => 'roadmap',
