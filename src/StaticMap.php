@@ -76,7 +76,7 @@ class StaticMap {
         }
 
 
-        $url = 'http://maps.googleapis.com/maps/api/staticmap?center=' . $center . $zoom . $size . $mapType . $imageFormat . $markers . $key;
+        $url = '//maps.googleapis.com/maps/api/staticmap?center=' . $center . $zoom . $size . $mapType . $imageFormat . $markers . $key;
 
         return $url;
     }
